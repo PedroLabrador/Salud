@@ -12,7 +12,7 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', 'PageController@home');
-Route::get('/posts/{post}', 'PostsController@show');
-
-Route::get('/about', 'PageController@about');
+Route::get ('/', 'PageController@home');
+Route::get ('/dashboard', 'PageController@dashboard');
+Route::get ('/posts/{post}', 'PostsController@show');
+Route::post('/posts/create', 'PostsController@create');

@@ -8,13 +8,12 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function home() {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(10);
         return view('welcome', [
             'posts' => $posts,
         ]);
     }
-
-    public function about() {
-        return view('about');
+    public function dashboard() {
+        return view('dashboard');
     }
 }
