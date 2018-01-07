@@ -13,7 +13,7 @@
     <div class="row" style="width:60%; margin: 0 auto;">
         @forelse ($posts as $post)
             <div class="col-xs-12" style="margin-bottom: 2em;">
-                <p class="text-primary">Posted by: <a class="text-info" href="#">{{ $post->author }}</a></p>
+                <p class="text-primary">Posted by: <a class="text-info" href="/users/{{ $post->user->username }}">{{ $post->author }}</a></p>
                 <p class="text-muted">{{ $post->content }}</p>
                 <a class="text-info" href="/posts/{{ $post->id }}">Read more:</a>
             </div>
