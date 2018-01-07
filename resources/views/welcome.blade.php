@@ -7,6 +7,7 @@
         <nav class="navbar">
             <ul class="nav navbar-nav">
                 <li><a class="nav-link" href="/">Home</a></li>
+                <li><a class="nav-link" href="/dashboard">Post your symptoms</a></li>
             </ul>
         </nav>
     </div>
@@ -21,6 +22,5 @@
             <p>No posts available</p>
         @endforelse
     </div>
-
 
 @endsection
