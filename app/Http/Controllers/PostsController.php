@@ -13,6 +13,9 @@ class PostsController extends Controller
         ]);
     }
     public function create(Request $request) {
+
+        $user = $request->user();
+
         $this->validate($request, [
             'post_info' => ['required', 'max:255'],
         ], [
@@ -21,8 +24,9 @@ class PostsController extends Controller
         ]);
 
         $post = Post::create([
+            'user_id' => $user->id,
             'content' => $request->input('post_info'),
-            'author'  => 'Default',
+            'author'  => $user->name,
         ]);
 
         return redirect('/posts/'.$post->id);
