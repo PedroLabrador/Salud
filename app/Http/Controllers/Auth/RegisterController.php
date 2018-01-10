@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Patient;
+use App\Nurse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -64,12 +66,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'status' => $data['status'],
         ]);
+        $currentUser;
+        if ($user->status == 'P') {
+            $currentUser = Patient::create(['user_id' => $user->id]);
+        } else if ($user->status == 'N'){
+            $currentUser = Nurse::create(['user_id' => $user->id]);
+        }
+
+        return $user;
     }
 }
