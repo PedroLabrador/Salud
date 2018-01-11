@@ -7,7 +7,11 @@
         <nav class="navbar">
             <ul class="nav navbar-nav">
                 <li><a class="nav-link" href="/">Home</a></li>
-                <li><a class="nav-link" href="/dashboard">Post your symptoms</a></li>
+                @if ($user != null)
+                    @if ($user->status == 'P')
+                        <li><a class="nav-link" href="/dashboard">Post your symptoms</a></li>
+                    @endif
+                @endif
             </ul>
         </nav>
     </div>

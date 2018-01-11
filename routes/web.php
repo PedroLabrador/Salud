@@ -15,7 +15,8 @@ use App\Http\Controllers\PageController;
 Auth::routes();
 
 Route::get ('/', 'PageController@home');
-Route::get ('/dashboard', 'PageController@dashboard');
+Route::get ('/dashboard', 'PageController@dashboard')->middleware('auth');
+
 Route::get ('/posts/{post}', 'PostsController@show');
 Route::post('/posts/create', 'PostsController@create')->middleware('auth');
 
