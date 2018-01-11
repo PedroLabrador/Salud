@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function voted() {
         return $this->belongsToMany(User::class, 'votes', 'voted_id', 'user_id');
     }
+
+    public function hasVoted(User $user) {
+        return $this->votes->contains($user);
+    }
 }

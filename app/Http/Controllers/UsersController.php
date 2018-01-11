@@ -29,6 +29,15 @@ class UsersController extends Controller
         return redirect("/users/$username")->withSuccess('Voted for this nurse!');
     }
 
+    public function unvote($username, Request $request) {
+        $user = User::where('username', $username)->first();
+        $me = $request->user();
+
+        //Makes use of votes function of the user model
+        $me->votes()->detach($user);
+        return redirect("/users/$username")->withSuccess('Removed vote for this nurse!');
+    }
+
     public function votes($username) {
         $user = User::where('username', $username)->first();
 

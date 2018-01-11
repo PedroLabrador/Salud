@@ -21,6 +21,7 @@ Route::post('/posts/create', 'PostsController@create')->middleware('auth');
 
 Route::get ('/users/{username}', 'UsersController@show')->middleware('auth');
 Route::get ('/users/{username}/votes', 'UsersController@votes')->middleware('auth');
-Route::post('/users/{username}/vote', 'UsersController@vote');
+Route::post('/users/{username}/vote', 'UsersController@vote')->middleware('auth');
+Route::post('/users/{username}/unvote', 'UsersController@unvote')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
