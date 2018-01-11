@@ -8,6 +8,16 @@
         <p>User: {{ $user->username }}</p>
         <p>{{ $user->email }}</p>
 
+        @if ($user->status == 'N')
+            <form action="/users/{{ $user->username }}/vote" method="post">
+                {{ csrf_field() }}
+                @if (session('success'))
+                    <span class="text-success">{{ session('success') }}</span>
+                @endif
+                <button class="btn btn-primary">Vote!!</button>
+            </form>
+        @endif
+
         <small><p class="text-muted">{{ $user->created_at }}</p></small>
     </div>
 
