@@ -17,8 +17,10 @@ Auth::routes();
 Route::get ('/', 'PageController@home');
 Route::get ('/dashboard', 'PageController@dashboard')->middleware('auth');
 
-Route::get ('/posts/{post}', 'PostsController@show');
 Route::post('/posts/create', 'PostsController@create')->middleware('auth');
+Route::get ('/posts/{post}', 'PostsController@show')->middleware('auth');
+Route::post('/posts/{post}/apply', 'PostsController@apply')->middleware('auth');
+Route::post('/posts/{post}/unapply', 'PostsController@unapply')->middleware('auth');
 
 Route::get ('/users/{username}', 'UsersController@show')->middleware('auth');
 Route::get ('/users/{username}/votes', 'UsersController@votes')->middleware('auth');

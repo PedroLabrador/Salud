@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use App\Patient;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,23 @@ class PostsController extends Controller
             'post' => $post,
         ]);
     }
+
+    public function apply(Post $post, Request $request) {
+        $post = Post::where('id', $post->id)->first();
+        $me = $request->user();
+
+        $post->applies()->attach($me);
+        return redirect("/posts/$post->id");
+    }
+
+    public function unapply(Post $post, Request $request) {
+        $post = Post::where('id', $post->id)->first();
+        $me = $request->user();
+
+        $post->applies()->detach($me);
+        return redirect("/posts/$post->id");
+    }
+
     public function create(Request $request) {
 
         $user = $request->user();

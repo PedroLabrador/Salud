@@ -2,6 +2,6 @@
 
 @section('content')
     @foreach ($user->voted as $voted)
-        <li>{{ $voted->username }}</li>
+        <li>{{ $voted }}</li>
     @endforeach
 @endsection

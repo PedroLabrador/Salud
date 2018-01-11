@@ -7,7 +7,9 @@
         <p>Type: @if ($user->status == 'P') Patient @else Nurse @endif</p>
         <p>User: {{ $user->username }}</p>
         <p>{{ $user->email }}</p>
-        <a href="/users/{{ $user->username }}/votes">{{ $user->voted->count() }} voted for this nurse</a>
+        @if ($user->status == 'N')
+            <a href="/users/{{ $user->username }}/votes">{{ $user->voted->count() }} voted for this nurse</a>
+        @endif
 
         @if (Auth::check())
             @if (Auth::user()->hasVoted($user))
