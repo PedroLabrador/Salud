@@ -12,7 +12,7 @@
     </div>
 
     <div class="row" style="width:60%; margin: 0 auto;">
-        @forelse ($posts as $post)
+        @forelse ($user->posts as $post)
             <div class="col-xs-12" style="margin-bottom: 2em;">
                 <p class="text-muted">{{ $post->content }}</p>
                 <p class="text-info" >{{ $post->created_at }}</p>
