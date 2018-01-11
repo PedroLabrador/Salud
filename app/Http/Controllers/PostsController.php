@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -18,18 +19,26 @@ class PostsController extends Controller
 
         $this->validate($request, [
             'post_info' => ['required', 'max:255'],
+            'title'     => ['required'],
         ], [
             'post_info.required' => 'Por favor el campo no debe estar vacio',
             'post_info.max'      => 'El campo no debe tener mas de 255 caracteres',
+            'title.required'     => 'Por favor el campo no debe estar vacio',
         ]);
 
         $post = Post::create([
             'user_id' => $user->id,
+            'title'   => $request->input('title'),
             'content' => $request->input('post_info'),
             'author'  => $user->name,
         ]);
 
-        return redirect('/posts/'.$post->id);
+        /*$patient = Patient::find($user->id);
+        $patient->address = $request->input('address');
+        $patient->phone = $request->input('phone');
 
+        $patient->save();*/
+
+        return redirect('/posts/'.$post->id);
     }
 }
